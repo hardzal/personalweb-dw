@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link href="./styles/global.font.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <div class="icon" style="flex-grow: 1">
+        <img src="./assets/images/Circle-icons-dev.svg.png" />
+      </div>
+      <nav style="flex-grow: 9">
+        <ul>
+          <li style="flex-grow: 1">
+            <a href="index.html">Home</a>
+          </li>
+          <li style="flex-grow: 1">
+            <a href="project.html">My Project</a>
+          </li>
+          <li style="flex-grow: 7"></li>
+          <li class="btn-contact">
+            <a href="contact.html">Contact Me</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="contact-section">
+        <form id="contactForm" class="contact-form">
+            <h1>Contact Me</h1>
+            <div class="forms">
+              <div class="form-field">
+                  <label for="name">Name</label>
+                  <input id="name" name="name" class="form-input" type="text" placeholder="name" required />
+              </div>
+
+              <div class="form-field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" class="form-input" type="email" placeholder="email" required />
+              </div>
+
+              <div class="form-field">
+                  <label for="phoneNumber">Phone Number</label>
+                  <input id="phoneNumber" name="phoneNumber" class="form-input" type="text" placeholder="phone number" required/>
+              </div>
+              
+              <div class="form-field">
+                  <label for="subject">Subject</label>
+                  <input id="subject" name="subject" class="form-input" placeholder="subject" required></input>
+              </div>
+
+              <div class="form-field">
+                  <label class="message-contact" for="message">Your Message</label>
+                  <textarea id="message" name="message" class="form-input" placeholder="type your message" required></textarea>
+              </div>
+
+              <button type="submit" class="form-submit-button">Submit</button>
+          </div>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>    
+  </body>
+</html>
