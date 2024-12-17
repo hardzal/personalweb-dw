@@ -1,0 +1,4 @@
+{
+  "match": ["index.js", "views/"],
+  "ext": "js, css, hbs"
+}
