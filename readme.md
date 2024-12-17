@@ -1,11 +1,18 @@
-/
-/about
-/blogs
-/blogs/:id
-/projects
-/projects/:id
-/testimonial
-/contact
+# readme
 
--Tambah method http request get and post
--buat halaman detail (detail blog/detail project) dan menggunakan dynamic routing. ketika memilih blog/project, maka yang muncul adalah detail blog/project tersebut
+### route
+
+- `http://localhost:5000/`
+- `http://localhost:5000/about`
+- `http://localhost:5000//blogs`
+- `http://localhost:5000//blogs/:id`
+- `http://localhost:5000//projects`
+- `http://localhost:5000//projects/:id`
+- `http://localhost:5000//testimonial`
+- `http://localhost:5000//contact`
+
+### feature
+
+- Menggunakan method GET & POST
+- Menggunakan dynamic & unique ROUTE
+- Connect Database
