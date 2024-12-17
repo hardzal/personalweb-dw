@@ -1,20 +1,20 @@
-function homeIndex(res, req) {
+function homeIndex(req, res) {
   res.render("index");
 }
 
-function blogPage(res, req) {
+function blogPage(req, res) {
   res.render("blog");
 }
 
-function projectPage(res, req) {
+function projectPage(req, res) {
   res.render("project");
 }
 
-function projectDetailPage(res, req) {
+function projectDetailPage(req, res) {
   res.render("project-detail");
 }
 
-function contactPage(res, req) {
+function contactPage(req, res) {
   res.render("contact");
 }
 

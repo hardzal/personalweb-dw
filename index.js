@@ -1,7 +1,13 @@
 const express = require("express");
 const path = require("path");
 const hbs = require("hbs");
-const {} = require("./controllers/controllers");
+const {
+  homeIndex,
+  blogPage,
+  contactPage,
+  projectPage,
+  projectDetailPage,
+} = require("./controllers/controllers");
 const app = express();
 const PORT = 5000;
 
@@ -15,23 +21,21 @@ hbs.registerPartials(path.join(__dirname, "./views/partials"), (err) => {
 });
 
 // route lists
-app.get("/", (req, res) => {});
+app.get("/", homeIndex);
 
-app.get("/blogs", (req, res) => {});
+app.get("/blogs", blogPage);
 app.get("/blogs/:id", (req, res) => {});
 
-app.get("/blog/add", (req, res) => {});
-app.post("/blog/add", (req, res) => {});
+// app.get("/blog/add", (req, res) => {});
+// app.post("/blog/add", (req, res) => {});
 
-app.get("/projects", () => {});
-app.get("/projects/:id", () => {});
+app.get("/projects", projectPage);
+app.get("/projects/:id", projectDetailPage);
 
-app.get("/project/add", () => {});
-app.post("/projects/add", () => {});
+// app.get("/project/add", () => {});
+// app.post("/projects/add", () => {});
 
-app.get("/contact", () => {});
-
-app.get("*", () => {});
+app.get("/contact", contactPage);
 
 app.listen(PORT, () => {
   console.log(`\nBerhasil menjalankan server pada http://localhost:${PORT}`);
