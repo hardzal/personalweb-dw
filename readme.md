@@ -15,4 +15,4 @@
 
 - Menggunakan method GET & POST
 - Menggunakan dynamic & unique ROUTE
-- Connect Database
+- Connect Database (postgresql)
