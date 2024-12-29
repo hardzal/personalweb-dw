@@ -29,11 +29,6 @@ main > div {
   margin: 20px;
 }
 
-.post-add {
-  width: 60%;
-  margin: 0 auto;
-}
-
 .introduction {
   text-align: justify;
   max-width: 70%;
@@ -264,6 +259,13 @@ section {
   background-color: #ecf0f1;
 }
 
+.post-add {
+  width: 60%;
+  margin: 0 auto;
+}
+
+/** Project post stykes**/
+
 .project-post {
 }
 
@@ -420,3 +422,5 @@ section {
   font-size: 1.5em;
   line-height: 1.5;
 }
+
+/** end post styles **/

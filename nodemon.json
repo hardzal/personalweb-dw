@@ -2,5 +2,5 @@
   "match": ["index.js", "views/"],
   "ext": "js, css, hbs",
   "ignore": ["node_modules"],
-  "exec": "mode index.js"
+  "exec": "node index.js"
 }

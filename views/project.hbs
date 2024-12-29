@@ -1,19 +1,20 @@
-{{#> layout}}
+{{#> layout }}
   <div class="container">
       <main>
         <div class="post-add">
           <form
             id="postForm"
-            onsubmit="addProject(event)"
+            action="/project/add"
+            method="post"
             class="form-container"
           >
             <h1>ADD TO MY PROJECT</h1>
             <div class="forms">
               <div class="form-field">
-                <label for="project_name">Project Name</label>
+                <label for="title">Project Name</label>
                 <input
-                  id="project_name"
-                  name="project_name"
+                  id="title"
+                  name="title"
                   class="form-input"
                   type="text"
                   required
@@ -60,6 +61,7 @@
                     <input
                       type="checkbox"
                       value="nodejs"
+                      name="technologies"
                       class="input-checkbox"
                       value="nodejs"
                     />Node Js
@@ -68,6 +70,7 @@
                     <input
                       type="checkbox"
                       value="nextjs"
+                      name="technologies"
                       class="input-checkbox"
                       value="nextjs"
                     />Next Js
@@ -76,6 +79,7 @@
                     <input
                       type="checkbox"
                       value="reactjs"
+                      name="technologies"
                       class="input-checkbox"
                       value="reactjs"
                     />React Js
@@ -84,6 +88,7 @@
                     <input
                       type="checkbox"
                       value="typescript"
+                      name="technologies"
                       class="input-checkbox"
                       value="typescript"
                     />Typescript
@@ -95,13 +100,14 @@
                 <div class="upload-image-project">
                   <label for="upload-image">
                     <span>Attach File</span>
-                    <img src="../assets/file.png" alt="upload-file" />
+                    <img src="/assets/images/file.png" alt="upload-file" />
                   </label>
                   <input
                     type="file"
-                    name="upload-image"
+                    name="image"
                     id="upload-image"
                     class="form-upload"
+                    required
                     hidden
                   />
                 </div>
@@ -121,7 +127,7 @@
           <div class="post-item">
             <div class="post-thumbnail">
               <a href="#">
-                <img src="../assets/blog-img.png" alt="title" />
+                <img src="./assets/images/blog-img.png" alt="title" />
               </a>
             </div>
             <div class="post-title">
