@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const hbs = require("hbs");
 const methodOverride = require("method-override");
-const db = require("./config/connect");
+// const db = require("./config/connect");
 const {
   homeIndex,
   blogPage,
@@ -13,6 +13,9 @@ const {
   projectDetailPage,
   projectAddPage,
   projectAdd,
+  projectUpdatePage,
+  projectUpdate,
+  projectDelete,
 } = require("./controllers/controllers");
 const { getRelativeTime } = require("./utils/time");
 
@@ -39,11 +42,11 @@ app.get("/", homeIndex);
 
 app.get("/projects", projectPage);
 app.get("/projects/:id", projectDetailPage);
-
 app.get("/project/add", projectAddPage);
 app.post("/project/add", projectAdd);
-app.put("/project/:id/update", () => {});
-app.delete("/project/:id", () => {});
+app.get("/project/:id/edit", projectUpdatePage);
+app.put("/project/:id", projectUpdate);
+app.delete("/project/:id", projectDelete);
 
 app.get("/blogs", blogPage);
 app.get("/blogs/:id", blogDetailPage);
