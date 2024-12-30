@@ -152,10 +152,10 @@
             </div>
             <div class="post-button">
               <a href="/project/{{this.id}}/edit" class="button-edit" target="_blank">edit</a>
-              <a href="/project/{{this.id}}/detail">detail</a>
+              <a href="/project/{{this.id}}/detail" class="button-detail">detail</a>
               <form action="/project/{{this.id}}?_method=DELETE" method="post">
                 <input type="hidden" name="id" value="{{this.id}}"/>
-                <button type="submit" class="button-delete">delete</button>
+                <button type="submit" class="button-delete" onclick="return confirm('Anda yakin ingin menghapus ini?')">delete</button>
               </form>
             </div>
           </div>

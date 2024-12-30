@@ -93,6 +93,7 @@ async function projectUpdate(req, res) {
   let description = req.body.description;
   let technologies = req.body.technologies;
   let image = req.body.image;
+
   let id_project = req.body.id;
 
   if (title == "" || startDate == "" || endDate == "" || description == "") {
@@ -128,7 +129,8 @@ async function projectDelete(req, res) {
       type: QueryTypes.DELETE,
     });
 
-    res.send(`Berhasil menghapus data! ${project}`);
+    // res.send(`Berhasil menghapus data! ${project}`);
+    res.redirect("/projects");
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

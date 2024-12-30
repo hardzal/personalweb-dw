@@ -105,17 +105,19 @@
               </div>
               <div class="form-field">
                 <label for="upload-image">Upload Image</label>
+                <span>upload on progress</span>
                 <div class="upload-image-project">
                   <label for="upload-image">
                     <span>Attach File</span>
+                    <input type="hidden" value="{{image}}" name="image"/>
                     <img src="/assets/images/file.png" alt="upload-file" />
                   </label>
                   <input
                     type="file"
-                    name="image"
+                    name="image-upload"
                     id="upload-image"
                     class="form-upload"
-                    required
+                    {{!-- required --}}
                     hidden
                   />
                 </div>

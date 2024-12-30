@@ -4,6 +4,10 @@ body {
   margin: 0px;
 }
 
+form {
+  margin: 0;
+}
+
 a {
   text-decoration: none;
   color: none;
@@ -350,7 +354,8 @@ section {
   align-items: center;
 }
 
-.post-button a {
+.post-button a,
+.post-button button {
   margin-top: 10px;
   background-color: #2c3e50;
   display: inline-block;
@@ -421,6 +426,15 @@ section {
 .post-description {
   font-size: 1.5em;
   line-height: 1.5;
+}
+
+.button-delete {
+  background-color: darkred !important;
+  cursor: pointer;
+}
+
+.button-detail {
+  background-color: darkblue !important;
 }
 
 /** end post styles **/
