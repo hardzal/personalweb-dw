@@ -26,3 +26,7 @@ function getRelativeTime(startDate, endDate) {
   console.log(diffInYears, "year");
   return `Durasi : ${diffInYears} year` + (diffInYears > 1 ? "s" : "");
 }
+
+function changeDate(date) {
+  return `${date.getFullYear()}-${date.getmonth() + 1}-${date.getDate()}`;
+}

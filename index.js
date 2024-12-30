@@ -2,7 +2,9 @@ const express = require("express");
 const path = require("path");
 const hbs = require("hbs");
 const methodOverride = require("method-override");
-// const db = require("./config/connect");
+const db = require("./config/connect");
+const { getRelativeTime, changeDate } = require("./utils/time");
+
 const {
   homeIndex,
   blogPage,
@@ -17,7 +19,6 @@ const {
   projectUpdate,
   projectDelete,
 } = require("./controllers/controllers");
-const { getRelativeTime } = require("./utils/time");
 
 const app = express();
 const PORT = 5000;
@@ -36,17 +37,18 @@ hbs.registerPartials(path.join(__dirname, "./views/partials"), (err) => {
   if (err) console.error("Error registering partials:", err);
 });
 hbs.registerHelper("getRelativeTime", getRelativeTime);
+hbs.registerHelper("changeDate", changeDate);
 
 // route lists
 app.get("/", homeIndex);
 
 app.get("/projects", projectPage);
-app.get("/projects/:id", projectDetailPage);
 app.get("/project/add", projectAddPage);
 app.post("/project/add", projectAdd);
 app.get("/project/:id/edit", projectUpdatePage);
 app.put("/project/:id", projectUpdate);
 app.delete("/project/:id", projectDelete);
+app.get("/projects/:id/detail", projectDetailPage);
 
 app.get("/blogs", blogPage);
 app.get("/blogs/:id", blogDetailPage);

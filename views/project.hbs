@@ -124,6 +124,7 @@
           <h2>MY PROJECT</h2>
         </div>
         <div class="main-post" id="post-main">
+          {{#each data}}
           <div class="post-item">
             <div class="post-thumbnail">
               <a href="#">
@@ -132,17 +133,16 @@
             </div>
             <div class="post-title">
               <a href="#">
-                <h2>Some amazing project title here</h2>
+                <h2>{{this.title}}</h2>
               </a>
             </div>
             <div class="post-time">
-              <span>Posted at 7/12/2024</span> ||
+              <span>Posted at {{this.createdAt}}</span> ||
               <span>Durasi : 1 bulan</span>
             </div>
             <div class="post-summary">
               <p>
-                Here what've done, you looking good, but actually it's not
-                enough. Do more!
+                {{this.description}}
               </p>
             </div>
             <div class="post-category">
@@ -151,11 +151,15 @@
               <span>nodejs</span>
             </div>
             <div class="post-button">
-              <a href="#" class="button-edit" target="_blank">edit</a>
-              <a href="#">detail</a>
-              <a href="#" class="button-delete" target="_blank">delete</a>
+              <a href="/project/{{this.id}}/edit" class="button-edit" target="_blank">edit</a>
+              <a href="/project/{{this.id}}/detail">detail</a>
+              <form action="/project/{{this.id}}?_method=DELETE" method="post">
+                <input type="hidden" name="id" value="{{this.id}}"/>
+                <button type="submit" class="button-delete">delete</button>
+              </form>
             </div>
           </div>
+          {{/each}}
         </div>
       </div>
     </section>

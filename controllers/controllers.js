@@ -14,12 +14,13 @@ async function homeIndex(req, res) {
 
 async function projectPage(req, res) {
   const query = `SELECT * FROM public."Projects"`;
-  const blogsData = await sequelize.query(query, {
+  const projectsData = await sequelize.query(query, {
     type: QueryTypes.SELECT,
   });
 
   res.render("project", {
     title: "Project list",
+    data: projectsData,
   });
 }
 
@@ -62,7 +63,28 @@ async function projectDetailPage(req, res) {
   res.render("project-detail");
 }
 
-async function projectUpdatePage(req, res) {}
+async function projectUpdatePage(req, res) {
+  // const query = `SELECT * FROM public."Projects" WHERE id = '${req.params.id}'`;
+  const query = `SELECT * FROM public."Projects" WHERE id = :id`;
+  try {
+    const projectData = await sequelize.query(query, {
+      replacements: { id: req.params.id },
+      type: QueryTypes.SELECT,
+    });
+
+    if (projectData.length === 0) {
+      return res.status(404).send("Project not found");
+    }
+
+    console.log("Data: ", projectData);
+    res.render("project-edit", {
+      data: projectData[0],
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+}
 
 async function projectUpdate(req, res) {
   let title = req.body.title;
@@ -72,6 +94,7 @@ async function projectUpdate(req, res) {
   let technologies = req.body.technologies;
   let image = req.body.image;
   let id_project = req.body.id;
+
   if (title == "" || startDate == "" || endDate == "" || description == "") {
     return alert("All input fields cannot be empty");
   }
