@@ -28,5 +28,10 @@ function getRelativeTime(startDate, endDate) {
 }
 
 function changeDate(date) {
-  return `${date.getFullYear()}-${date.getmonth() + 1}-${date.getDate()}`;
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 }
+
+module.exports = {
+  getRelativeTime,
+  changeDate,
+};

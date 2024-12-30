@@ -2,8 +2,9 @@ const express = require("express");
 const path = require("path");
 const hbs = require("hbs");
 const methodOverride = require("method-override");
-const db = require("./config/connect");
-const { getRelativeTime, changeDate } = require("./utils/time");
+// const db = require("./config/connect");
+const { getRelativeTime, changeDate } = require("./utils/time.js");
+const { checkBox } = require("./utils/helper.js");
 
 const {
   homeIndex,
@@ -38,6 +39,7 @@ hbs.registerPartials(path.join(__dirname, "./views/partials"), (err) => {
 });
 hbs.registerHelper("getRelativeTime", getRelativeTime);
 hbs.registerHelper("changeDate", changeDate);
+hbs.registerHelper("checkBox", checkBox);
 
 // route lists
 app.get("/", homeIndex);
