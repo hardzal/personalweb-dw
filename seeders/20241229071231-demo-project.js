@@ -16,7 +16,7 @@ module.exports = {
       {
         title: "First post",
         description: "New post for the first time",
-        technologies: "js, react, express",
+        technologies: "typescript, reactjs, nodejs",
         start_date: new Date("2024-10-10"),
         end_date: new Date("2024-11-11"),
         createdAt: new Date(),

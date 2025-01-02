@@ -16,3 +16,9 @@
 - Menggunakan method GET & POST
 - Menggunakan dynamic & unique ROUTE
 - Connect Database (postgresql)
+- Menggunakan HBS templating
+- Sequelize ORM
+- CRUD proses sederhana
+- Image Uploading
+- Validation
+- Authentication & Authorization
