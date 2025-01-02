@@ -144,59 +144,12 @@ async function projectDelete(req, res) {
   }
 }
 
-/** Blog controllers */
-async function blogPage(req, res) {
-  const query = `SELECT * FROM public."Blogs"`;
-  const blogsData = await sequelize.query(query, {
-    type: QueryTypes.SELECT,
-  });
-
-  res.render("blog", {
-    title: "Blog Page",
-    data: blogsData,
-  });
-}
-
-function blogDetailPage(req, res) {
-  let id = req.params.id;
-  res.send("blog-detail");
-}
-
-async function blogAddPage(req, res) {
-  res.send("");
-}
-
-async function blogAdd(req, res) {}
-
-async function blogUpdatePage(req, res) {}
-
-async function blogUpdate(req, res) {}
-
-async function blogDelete(req, res) {}
-
-/** testimonial controllers */
-
-async function testimonialPage() {}
-
-async function testimonialAddPage() {}
-
-async function testimonialAdd() {}
-
-async function testimonialUpdatePage() {}
-
-async function testimonalUpdate() {}
-
-async function testimonalDelete() {}
-
 async function contactPage(req, res) {
   res.render("contact");
 }
 
 module.exports = {
   homeIndex,
-  blogPage,
-  blogDetailPage,
-  blogAddPage,
   contactPage,
   projectPage,
   projectDetailPage,

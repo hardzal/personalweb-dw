@@ -21,3 +21,4 @@
 - CRUD proses sederhana
 - Image Uploading
 - Validation
+- Authentication & Authorization

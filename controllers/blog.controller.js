@@ -1,3 +1,7 @@
+const { Sequelize, QueryTypes } = require("sequelize");
+const config = require("../config/config.json");
+const sequelize = new Sequelize(config.development);
+
 /** Blog controllers */
 async function blogPage(req, res) {
   const query = `SELECT * FROM public."Blogs"`;
@@ -27,3 +31,13 @@ async function blogUpdatePage(req, res) {}
 async function blogUpdate(req, res) {}
 
 async function blogDelete(req, res) {}
+
+module.exports = {
+  blogPage,
+  blogDetailPage,
+  blogAddPage,
+  blogAdd,
+  blogUpdatePage,
+  blogUpdate,
+  blogDelete,
+};

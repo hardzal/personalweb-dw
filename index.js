@@ -7,9 +7,16 @@ const methodOverride = require("method-override");
 const { getRelativeTime, changeDate } = require("./utils/time.js");
 const { checkBox, flashMessage } = require("./utils/helper.js");
 
+const { homeIndex, contactPage } = require("./controllers/page.controller.js");
+
 const {
-  homeIndex,
-  contactPage,
+  authLogin,
+  authRegister,
+  loginPage,
+  registerPage,
+} = require("./controllers/auth.controllers.js");
+
+const {
   projectPage,
   projectDetailPage,
   projectAddPage,
@@ -20,11 +27,14 @@ const {
 } = require("./controllers/project.controllers.js");
 
 const {
-  authLogin,
-  authRegister,
-  loginPage,
-  registerPage,
-} = require("./controllers/auth.controllers.js");
+  blogPage,
+  blogAdd,
+  blogAddPage,
+  blogDetailPage,
+  blogUpdate,
+  blogUpdatePage,
+  blogDelete,
+} = require("./controllers/blog.controller.js");
 
 const app = express();
 const PORT = 5000;
