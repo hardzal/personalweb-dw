@@ -1,6 +1,5 @@
 const { Sequelize, QueryTypes } = require("sequelize");
 const config = require("../config/config.json");
-
 const sequelize = new Sequelize(config.development);
 
 async function homeIndex(req, res) {
@@ -12,16 +11,27 @@ async function homeIndex(req, res) {
   res.render("index", { data: projectsData });
 }
 
+/** projectpage controllers */
+
 async function projectPage(req, res) {
   const query = `SELECT * FROM public."Projects"`;
-  const projectsData = await sequelize.query(query, {
-    type: QueryTypes.SELECT,
-  });
+  try {
+    const projectsData = await sequelize.query(query, {
+      type: QueryTypes.SELECT,
+    });
 
-  res.render("project", {
-    title: "Project list",
-    data: projectsData,
-  });
+    res.render("project", {
+      title: "Project list",
+      data: projectsData,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function projectDetailPage(req, res) {
+  res.render("project-detail");
 }
 
 async function projectAddPage(req, res) {
@@ -57,10 +67,6 @@ async function projectAdd(req, res) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
-}
-
-async function projectDetailPage(req, res) {
-  res.render("project-detail");
 }
 
 async function projectUpdatePage(req, res) {
@@ -115,7 +121,8 @@ async function projectUpdate(req, res) {
       type: QueryTypes.UPDATE,
     });
 
-    res.send(`Berhasil memperbaharui ${project}`);
+    // res.send(`Berhasil memperbaharui ${project}`);
+    res.redirect("/projects");
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -123,8 +130,8 @@ async function projectUpdate(req, res) {
 }
 
 async function projectDelete(req, res) {
+  const query = `DELETE FROM public."Projects" WHERE id = '${req.body.id}'`;
   try {
-    const query = `DELETE FROM public."Projects" WHERE id = '${req.body.id}'`;
     const project = await sequelize.query(query, {
       type: QueryTypes.DELETE,
     });
@@ -137,6 +144,7 @@ async function projectDelete(req, res) {
   }
 }
 
+/** Blog controllers */
 async function blogPage(req, res) {
   const query = `SELECT * FROM public."Blogs"`;
   const blogsData = await sequelize.query(query, {
@@ -165,6 +173,8 @@ async function blogUpdatePage(req, res) {}
 async function blogUpdate(req, res) {}
 
 async function blogDelete(req, res) {}
+
+/** testimonial controllers */
 
 async function testimonialPage() {}
 
