@@ -36,6 +36,15 @@ const {
   blogDelete,
 } = require("./controllers/blog.controller.js");
 
+const {
+  testimonialPage,
+  testimonialAdd,
+  testimonialAddPage,
+  testimonialUpdate,
+  testimonialUpdatePage,
+  testimonialDelete,
+} = require("./controllers/testimonial.controller.js");
+
 const app = express();
 const PORT = 5000;
 
@@ -60,6 +69,7 @@ hbs.registerHelper("flashMessage", flashMessage);
 // route lists
 app.get("/", homeIndex);
 
+// projects controlllers
 app.get("/projects", projectPage);
 app.get("/project/add", projectAddPage);
 app.post("/project/add", projectAdd);
@@ -68,6 +78,7 @@ app.put("/project/:id", projectUpdate);
 app.delete("/project/:id", projectDelete);
 app.get("/projects/:id/detail", projectDetailPage);
 
+// blog controllers
 app.get("/blogs", blogPage);
 app.get("/blogs/:id", blogDetailPage);
 app.get("/blog/add", blogAddPage);
