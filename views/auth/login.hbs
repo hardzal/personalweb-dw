@@ -1,0 +1,30 @@
+{{#>layout}}
+<div class="container">
+    <main>
+        <div class="form-auth">
+            <h3>Form Login</h3><hr/>
+            {{#if messages.error}}
+            <div class="alert alert-danger" role="alert">
+                {{messages.error}}
+            </div>
+            {{/if}}
+            {{#if messages.success}}
+            <div class="alert alert-success" role="alert">
+                {{messages.success}}
+            </div>
+            {{/if}}
+            <form method="post" action="/login">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="type your email here">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="type your password here">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </main>
+</div>
+{{/layout}}

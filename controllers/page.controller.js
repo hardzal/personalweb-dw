@@ -3,16 +3,15 @@ const config = require("../config/config.json");
 const sequelize = new Sequelize(config.development);
 
 async function homeIndex(req, res) {
-  const query = `SELECT * FROM public."Projects"`;
-  const projectsData = await sequelize.query(query, {
-    type: QueryTypes.SELECT,
-  });
+  const userSession = req.session.user || null;
 
-  res.render("index", { data: projectsData });
+  res.render("index", { userSession: userSession });
 }
 
 async function contactPage(req, res) {
-  res.render("contact");
+  const userSession = req.session.user || null;
+
+  res.render("contact", { userSession: userSession });
 }
 
 module.exports = {

@@ -29,6 +29,10 @@ main {
   font-size: large;
 }
 
+main.login {
+  align-items: center;
+}
+
 main > div {
   margin: 20px;
 }
@@ -438,3 +442,9 @@ section {
 }
 
 /** end post styles **/
+
+/** auth styling **/
+.form-auth {
+  width: 60%;
+  margin: 0 auto;
+}

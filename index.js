@@ -1,8 +1,11 @@
 const express = require("express");
+const session = require("express-session");
+const flash = require("express-flash");
 const path = require("path");
 const hbs = require("hbs");
-const flash = require("express-flash");
 const methodOverride = require("method-override");
+const dotenv = require("dotenv");
+
 // const db = require("./config/connect");
 const { getRelativeTime, changeDate } = require("./utils/time.js");
 const { checkBox, flashMessage } = require("./utils/helper.js");
@@ -14,6 +17,7 @@ const {
   authRegister,
   loginPage,
   registerPage,
+  authLogout,
 } = require("./controllers/auth.controllers.js");
 
 const {
@@ -48,6 +52,8 @@ const {
 const app = express();
 const PORT = 5000;
 
+dotenv.config();
+
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "./views"));
 
@@ -55,8 +61,29 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
+app.use(flash());
+app.use(
+  session({
+    name: "my-session",
+    secret: process.env.SESSION_KEY,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
 app.use("/assets", express.static(path.join(__dirname, "./assets")));
 app.use("/dependecies", express.static(path.join(__dirname, "./dependecies")));
+app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
+
+// boostrap import
+app.use(
+  "/css",
+  express.static(path.join(__dirname, "./node_modules/bootstrap/dist/css"))
+);
+app.use(
+  "/js",
+  express.static(path.join(__dirname, "./node_modules/bootstrap/dist/js"))
+);
 
 hbs.registerPartials(path.join(__dirname, "./views/partials"), (err) => {
   if (err) console.error("Error registering partials:", err);
@@ -86,19 +113,15 @@ app.post("/blog/add", (req, res) => {});
 
 app.get("/contact", contactPage);
 
-app.get("/login", (req, res) => {
-  res.render("auth-login");
-});
+app.get("/login", loginPage);
+app.get("/register", registerPage);
+app.get("/logout", authLogout);
 
-app.get("/register", (req, res) => {
-  res.render("auth-register");
-});
+app.post("/register", authRegister);
+app.post("/login", authLogin);
 
-app.post("/register", (res, req) => {
-  // masukkan input
-  // convert passwword menggunakan bcrypt
-});
-app.post("/login", (res, req) => {});
+app.get("/errors", () => {});
+app.get("*", () => {});
 
 // app.get("/api/blog", async (req, res) => {// });
 

@@ -15,7 +15,20 @@
     <li style="flex-grow: 1">
       <a href="/testimonial">Testimonial</a>
     </li>
-    <li style="flex-grow: 5"></li>
+    {{#if userLoggedIn}}
+      <li style="flex-grow: 4"></li>
+      <li style="flex-grow: 1">
+        <a href="/logout">Logout</a>
+      </li>
+    {{else}}
+      <li style="flex-grow: 3"></li>
+      <li style="flex-grow: 1">
+        <a href="/login">Login</a>
+      </li>
+      <li style="flex-grow: 1">
+        <a href="/register">Register</a>
+      </li>
+    {{/if}}
     <li class="btn-contact">
       <a href="/contact">Contact Me</a>
     </li>

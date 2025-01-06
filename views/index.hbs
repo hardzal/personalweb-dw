@@ -1,5 +1,10 @@
 {{#> layout }}
 <div class="container">
+  {{#if messages.success}}
+  <div class="alert alert-success" role="alert">
+      {{messages.success}}
+  </div>
+  {{/if}}
   <main>
     <div class="content">
       <div class="introduction">

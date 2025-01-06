@@ -1,0 +1,33 @@
+{{#>layout}}
+<div class="container">
+    <main>
+        <div class="form-auth">
+            <h3>Form Register</h3><hr/>
+            {{#if messages.error}}
+            <div class="alert alert-danger" role="alert">
+                {{messages.error}}
+            </div>
+            {{/if}}
+            <form method="post" action="/register">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="input-email" aria-describedby="emailHelp" name="email" placeholder="type your email here" required/>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="input-username" aria-describedby="usernameHelp" name="username" placeholder="type your username here" required />
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="input-password" name="password" placeholder="type your password here" required/>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Type Password Again</label>
+                    <input type="password" class="form-control" id="input-re-password" name="re_password" placeholder="type your password again here" required/>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </main>
+</div>
+{{/layout}}
