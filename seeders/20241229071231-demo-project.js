@@ -14,6 +14,7 @@ module.exports = {
      */
     await queryInterface.bulkInsert("Projects", [
       {
+        user_id: 1,
         title: "First post",
         description: "New post for the first time",
         technologies: "typescript, reactjs, nodejs",

@@ -14,6 +14,7 @@ module.exports = {
      */
     await queryInterface.bulkInsert("Blogs", [
       {
+        user_id: 1,
         title: "First Post",
         description: "Hello, this is your new post!",
         image: "image1.jpg",
