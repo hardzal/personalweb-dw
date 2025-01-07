@@ -14,7 +14,10 @@ async function contactPage(req, res) {
   res.render("contact", { userSession: userSession });
 }
 
+async function aboutPage(req, res) {}
+
 module.exports = {
   homeIndex,
   contactPage,
+  aboutPage,
 };

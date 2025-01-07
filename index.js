@@ -10,7 +10,11 @@ const dotenv = require("dotenv");
 const { getRelativeTime, changeDate } = require("./utils/time.js");
 const { checkBox, flashMessage } = require("./utils/helper.js");
 
-const { homeIndex, contactPage } = require("./controllers/page.controller.js");
+const {
+  homeIndex,
+  contactPage,
+  aboutPage,
+} = require("./controllers/page.controller.js");
 
 const {
   authLogin,
@@ -47,6 +51,7 @@ const {
   testimonialUpdate,
   testimonialUpdatePage,
   testimonialDelete,
+  testimonialDetail,
 } = require("./controllers/testimonial.controller.js");
 
 const app = express();
@@ -95,6 +100,8 @@ hbs.registerHelper("flashMessage", flashMessage);
 
 // route lists
 app.get("/", homeIndex);
+app.get("/contact", contactPage);
+app.get("/about", aboutPage);
 
 // projects controlllers
 app.get("/projects", projectPage);
@@ -109,17 +116,28 @@ app.get("/projects/:id/detail", projectDetailPage);
 app.get("/blogs", blogPage);
 app.get("/blogs/:id", blogDetailPage);
 app.get("/blog/add", blogAddPage);
-app.post("/blog/add", (req, res) => {});
+app.get("/blog/:id/edit", blogUpdatePage);
+app.post("/blog/add", blogAdd);
+app.put("/blog/:id", blogUpdate);
+app.delete("/blog/:id", blogDelete);
 
-app.get("/contact", contactPage);
+// testimonial controllers
+app.get("/testimonials", testimonialPage);
+app.get("/testimonials/:id", testimonialDetail);
+app.get("/testimonials/add", testimonialAddPage);
+app.get("/testimonials/:id/edit", testimonialUpdatePage);
+app.put("/testimonials/:id", testimonialUpdate);
+app.post("/testimonials/add", testimonialAdd);
+app.delete("/testimonials/:id", testimonialDelete);
 
+// auth controllers
 app.get("/login", loginPage);
 app.get("/register", registerPage);
 app.get("/logout", authLogout);
-
 app.post("/register", authRegister);
 app.post("/login", authLogin);
 
+// custom page
 app.get("/errors", () => {});
 app.get("*", () => {});
 

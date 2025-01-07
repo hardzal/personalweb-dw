@@ -13,12 +13,22 @@
 
 ### feature
 
-- Menggunakan method GET & POST
-- Menggunakan dynamic & unique ROUTE
-- Connect Database (postgresql)
-- Menggunakan HBS templating
-- Sequelize ORM
-- CRUD proses sederhana
-- Image Uploading
-- Validation
-- Authentication & Authorization
+- [x] Menggunakan method GET & POST
+- [x] Menggunakan dynamic & unique ROUTE
+- [x] Connect Database (postgresql)
+- [x] Menggunakan HBS templating
+- [x] Sequelize ORM
+- [x] CRUD proses sederhana
+- [ ] Image Uploading
+- [ ] Validation
+- [ ] Authentication & Authorization
+
+---
+
+- [ ] CRUD Project
+- [ ] CRUD Blog
+- [ ] CRUD Testimonial
+- [ ] Contact email
+- [ ] Filtering Testimonial
+- [ ] Searching
+- [ ] Responsive

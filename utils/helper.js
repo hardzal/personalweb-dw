@@ -1,12 +1,12 @@
-const swal = require("sweetalert2");
+const Swal = require("sweetalert2");
 
 function checkBox(data, value) {
   let check = data.split(",").map((x) => x.trim());
   return check.includes(value) ? `checked` : ``;
 }
 
-async function flashMessage(message) {
-  await swal.fire({
+function flashMessage(message) {
+  Swal.fire({
     title: "Message",
     text: message,
     icon: "success",

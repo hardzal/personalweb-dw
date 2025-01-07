@@ -14,6 +14,8 @@ async function testimonialUpdate() {}
 
 async function testimonialDelete() {}
 
+async function testimonialDetail() {}
+
 module.exports = {
   testimonialPage,
   testimonialAddPage,
@@ -21,4 +23,5 @@ module.exports = {
   testimonialUpdatePage,
   testimonialUpdate,
   testimonialDelete,
+  testimonialDetail,
 };

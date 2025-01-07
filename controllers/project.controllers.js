@@ -35,7 +35,7 @@ async function projectDetailPage(req, res) {
 }
 
 async function projectAddPage(req, res) {
-  res.send("");
+  res.send("project-add");
 }
 
 async function projectAdd(req, res) {
@@ -62,7 +62,10 @@ async function projectAdd(req, res) {
       type: QueryTypes.INSERT,
     });
 
-    res.send(`Berhasil! ${project}`);
+    // res.send(`Berhasil! ${project}`);
+    req.flash("success", "Berhasil menambahkan data!");
+
+    res.redirect("/projects");
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -121,7 +124,8 @@ async function projectUpdate(req, res) {
       type: QueryTypes.UPDATE,
     });
 
-    // res.send(`Berhasil memperbaharui ${project}`);
+    req.flash("success", "Berhasil memperbaharui data!");
+
     res.redirect("/projects");
   } catch (error) {
     console.error(error);

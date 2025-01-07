@@ -15,13 +15,33 @@ async function authRegister(req, res) {
 
   // cek panjang length
   if (username.length < 3 || password.length < 3) {
-    return res
-      .status(204)
-      .send("Username atau password kurang dari tiga karakter.");
+    req.flash("error", "Username atau password kurang dari tiga karakter.");
+
+    return res.redirect("/register");
   }
 
   if (password !== re_password) {
-    return res.status(204).send("Password tidak sama!");
+    req.flash("error", "Password tidak sama.");
+
+    return res.redirect("/register");
+  }
+
+  const query = `SELECT * FROM public."Users" WHERE email = :email or username = :username`;
+  const user = await sequelize.query(query, {
+    replacements: {
+      email: email,
+      username: username,
+    },
+    type: QueryTypes.SELECT,
+  });
+
+  if (user.length != 0) {
+    req.flash("error", "Email atau username telah terdaftar!");
+    req.flash("user", {
+      email: email,
+      username: username,
+    });
+    return res.redirect("/register");
   }
 
   try {
@@ -29,7 +49,7 @@ async function authRegister(req, res) {
 
     const query = `INSERT INTO public."Users"(username, password, email) VALUES(:username, :password, :email)`;
 
-    const user = sequelize.query(query, {
+    const user = await sequelize.query(query, {
       replacements: {
         username: username,
         email: email,
