@@ -5,6 +5,7 @@ const path = require("path");
 const hbs = require("hbs");
 const methodOverride = require("method-override");
 const dotenv = require("dotenv");
+const upload = require("./middleware/upload-file.js");
 
 // const db = require("./config/connect");
 const { getRelativeTime, changeDate } = require("./utils/time.js");
@@ -106,9 +107,9 @@ app.get("/about", aboutPage);
 // projects controlllers
 app.get("/projects", projectPage);
 app.get("/project/add", projectAddPage);
-app.post("/project/add", projectAdd);
+app.post("/project/add", upload.single("image"), projectAdd);
 app.get("/project/:id/edit", projectUpdatePage);
-app.put("/project/:id", projectUpdate);
+app.put("/project/:id", upload.single("image"), projectUpdate);
 app.delete("/project/:id", projectDelete);
 app.get("/projects/:id/detail", projectDetailPage);
 

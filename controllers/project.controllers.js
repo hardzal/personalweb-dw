@@ -2,15 +2,6 @@ const { Sequelize, QueryTypes } = require("sequelize");
 const config = require("../config/config.json");
 const sequelize = new Sequelize(config.development);
 
-async function homeIndex(req, res) {
-  const query = `SELECT * FROM public."Projects"`;
-  const projectsData = await sequelize.query(query, {
-    type: QueryTypes.SELECT,
-  });
-
-  res.render("index", { data: projectsData });
-}
-
 /** projectpage controllers */
 
 async function projectPage(req, res) {
@@ -51,12 +42,18 @@ async function projectAddPage(req, res) {
 }
 
 async function projectAdd(req, res) {
+  const userSession = req.session.user ?? null;
+
+  if (userSession === null) {
+    return res.status(403).send("Halaman tidak bisa diakses.");
+  }
+
   let title = req.body.title;
   let startDate = req.body.start_date;
   let endDate = req.body.end_date;
   let description = req.body.description;
   let technologies = req.body.technologies;
-  let image = req.body.image;
+  let image = req.file.path;
 
   if (title == "" || startDate == "" || endDate == "" || description == "") {
     return alert("All input fields cannot be empty");
@@ -74,10 +71,15 @@ async function projectAdd(req, res) {
       type: QueryTypes.INSERT,
     });
 
-    // res.send(`Berhasil! ${project}`);
-    req.flash("success", "Berhasil menambahkan data!");
+    if (project) {
+      req.flash("success", "Berhasil menambahkan data!");
 
-    res.redirect("/projects");
+      return res.redirect("/projects");
+    }
+
+    req.flash("success", "Gagal menambahkan data!");
+
+    return res.redirect("/projects");
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -176,7 +178,6 @@ async function contactPage(req, res) {
 }
 
 module.exports = {
-  homeIndex,
   contactPage,
   projectPage,
   projectDetailPage,
