@@ -3,13 +3,15 @@ const config = require("../config/config.json");
 const sequelize = new Sequelize(config.development);
 
 async function homeIndex(req, res) {
-  const userSession = req.session.user || null;
+  const userSession = req.session.user ?? null;
+  console.log(userSession);
 
   res.render("index", { userSession: userSession });
 }
 
 async function contactPage(req, res) {
-  const userSession = req.session.user || null;
+  const userSession = req.session.user ?? null;
+  console.log(userSession);
 
   res.render("contact", { userSession: userSession });
 }

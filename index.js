@@ -71,7 +71,7 @@ app.use(
   session({
     name: "my-session",
     secret: process.env.SESSION_KEY,
-    resave: false,
+    resave: true,
     saveUninitialized: true,
   })
 );

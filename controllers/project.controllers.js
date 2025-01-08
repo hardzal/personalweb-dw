@@ -15,14 +15,18 @@ async function homeIndex(req, res) {
 
 async function projectPage(req, res) {
   const query = `SELECT * FROM public."Projects"`;
+  // mengecek apakah ada user session
+  const userSession = req.session.user ?? null;
+
   try {
     const projectsData = await sequelize.query(query, {
       type: QueryTypes.SELECT,
     });
 
-    res.render("project", {
+    return res.render("project", {
       title: "Project list",
       data: projectsData,
+      userSession: userSession,
     });
   } catch (error) {
     console.error(error);
@@ -35,7 +39,15 @@ async function projectDetailPage(req, res) {
 }
 
 async function projectAddPage(req, res) {
-  res.send("project-add");
+  const userSession = req.session.user ?? null;
+
+  if (userSession === null) {
+    return res.status(401).send("Halaman tidak bisa diakses.");
+  }
+
+  return res.render("project-add", {
+    userSession: userSession,
+  });
 }
 
 async function projectAdd(req, res) {
@@ -73,7 +85,12 @@ async function projectAdd(req, res) {
 }
 
 async function projectUpdatePage(req, res) {
-  // const query = `SELECT * FROM public."Projects" WHERE id = '${req.params.id}'`;
+  const userSession = req.session.user ?? null;
+
+  if (userSession === null) {
+    return res.status(403).send("Halaman tidak bisa diakses.");
+  }
+
   const query = `SELECT * FROM public."Projects" WHERE id = :id`;
   try {
     const projectData = await sequelize.query(query, {
@@ -96,6 +113,12 @@ async function projectUpdatePage(req, res) {
 }
 
 async function projectUpdate(req, res) {
+  const userSession = req.session.user ?? null;
+
+  if (userSession === null) {
+    return res.status(403).send("Halaman tidak bisa diakses.");
+  }
+
   let title = req.body.title;
   let startDate = new Date(req.body.start_date).toISOString();
   let endDate = new Date(req.body.end_date).toISOString();

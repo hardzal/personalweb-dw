@@ -83,8 +83,8 @@ async function authLogin(req, res) {
       type: QueryTypes.SELECT,
     });
 
-    if (!user) {
-      res.flash("error", "User tidak ditemukan!");
+    if (user.length == 0) {
+      req.flash("error", "User tidak ditemukan!");
       return res.redirect("/login");
     }
 
