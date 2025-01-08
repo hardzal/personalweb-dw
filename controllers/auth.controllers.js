@@ -10,16 +10,14 @@ async function authRegister(req, res) {
   // mengam
   const { username, email, password, re_password } = req.body;
 
-  // cek format
-  // cek kesamaan
-
-  // cek panjang length
+  // cek panjang email / password
   if (username.length < 3 || password.length < 3) {
     req.flash("error", "Username atau password kurang dari tiga karakter.");
 
     return res.redirect("/register");
   }
 
+  // Cek kesamaan password
   if (password !== re_password) {
     req.flash("error", "Password tidak sama.");
 
@@ -35,12 +33,12 @@ async function authRegister(req, res) {
     type: QueryTypes.SELECT,
   });
 
+  // cek apakah sudah terdaftar
   if (user.length != 0) {
     req.flash("error", "Email atau username telah terdaftar!");
-    req.flash("user", {
-      email: email,
-      username: username,
-    });
+    req.flash("email", email);
+    req.flash("username", password);
+
     return res.redirect("/register");
   }
 
