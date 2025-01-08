@@ -9,7 +9,7 @@ const upload = require("./middleware/upload-file.js");
 
 // const db = require("./config/connect");
 const { getRelativeTime, changeDate } = require("./utils/time.js");
-const { checkBox, flashMessage } = require("./utils/helper.js");
+const { checkBox, flashMessage, summaryDesc } = require("./utils/helper.js");
 
 const {
   homeIndex,
@@ -72,8 +72,9 @@ app.use(
   session({
     name: "my-session",
     secret: process.env.SESSION_KEY,
-    resave: true,
+    resave: false,
     saveUninitialized: true,
+    // cookie: { secure: true },
   })
 );
 
@@ -98,6 +99,7 @@ hbs.registerHelper("getRelativeTime", getRelativeTime);
 hbs.registerHelper("changeDate", changeDate);
 hbs.registerHelper("checkBox", checkBox);
 hbs.registerHelper("flashMessage", flashMessage);
+hbs.registerHelper("summaryDesc", summaryDesc);
 
 // route lists
 app.get("/", homeIndex);

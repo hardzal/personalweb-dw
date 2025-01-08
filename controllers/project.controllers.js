@@ -1,6 +1,7 @@
 const { Sequelize, QueryTypes } = require("sequelize");
 const config = require("../config/config.json");
 const sequelize = new Sequelize(config.development);
+const fs = require("fs");
 
 /** projectpage controllers */
 
@@ -107,6 +108,7 @@ async function projectUpdatePage(req, res) {
     console.log("Data: ", projectData);
     res.render("project-edit", {
       data: projectData[0],
+      userSession: userSession,
     });
   } catch (error) {
     console.error(error);
@@ -126,7 +128,7 @@ async function projectUpdate(req, res) {
   let endDate = new Date(req.body.end_date).toISOString();
   let description = req.body.description;
   let technologies = req.body.technologies;
-  let image = req.body.image;
+  let image = req.file.path;
 
   let id_project = req.body.id;
 
@@ -143,10 +145,13 @@ async function projectUpdate(req, res) {
                     end_date = '${endDate}',
                     image = '${image}',
                     "updatedAt" = '${new Date().toISOString()}'
-                  WHERE id = '${id_project}'              
+                  WHERE id = :id              
     `;
     const project = await sequelize.query(query, {
       type: QueryTypes.UPDATE,
+      replacements: {
+        id: id_project,
+      },
     });
 
     req.flash("success", "Berhasil memperbaharui data!");
@@ -159,14 +164,22 @@ async function projectUpdate(req, res) {
 }
 
 async function projectDelete(req, res) {
-  const query = `DELETE FROM public."Projects" WHERE id = '${req.body.id}'`;
+  const image = req.body.image ?? null;
+  if (image != null) {
+    fs.unlinkSync(image);
+  }
+
+  const query = `DELETE FROM public."Projects" WHERE id = :id`;
   try {
     const project = await sequelize.query(query, {
       type: QueryTypes.DELETE,
+      replacements: {
+        id: req.body.id,
+      },
     });
 
-    // res.send(`Berhasil menghapus data! ${project}`);
-    res.redirect("/projects");
+    req.flash("success", `Berhasil menghapus data! ${project}`);
+    return res.redirect("/projects");
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -174,7 +187,7 @@ async function projectDelete(req, res) {
 }
 
 async function contactPage(req, res) {
-  res.render("contact");
+  return res.render("contact");
 }
 
 module.exports = {

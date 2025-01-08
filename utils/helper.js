@@ -13,7 +13,12 @@ function flashMessage(message) {
   });
 }
 
+function summaryDesc(desc) {
+  return desc.substr(0, 100) + `...`;
+}
+
 module.exports = {
   checkBox,
   flashMessage,
+  summaryDesc,
 };

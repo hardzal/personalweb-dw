@@ -12,6 +12,16 @@
           <a href="/project/add">Tambah Projek</a>
         </div>
         {{/if}}
+        {{#if messages.error}}
+          <div class="alert alert-error" role="alert">
+              {{messages.error}}
+          </div>
+        {{/if}}
+        {{#if messages.success}}
+          <div class="alert alert-success" role="alert">
+              {{messages.success}}
+          </div>
+        {{/if}}
         <div class="main-post" id="post-main">
           {{#each data}}
           <div class="post-item">
@@ -31,7 +41,7 @@
             </div>
             <div class="post-summary">
               <p>
-                {{this.description}}
+                {{summaryDesc this.description}}
               </p>
             </div>
             <div class="post-category">
@@ -41,10 +51,11 @@
             </div>
             {{#if ../userLoggedIn.id}}
             <div class="post-button">
-              <a href="/project/{{this.id}}/edit" class="button-edit" target="_blank">edit</a>
+              <a href="/project/{{this.id}}/edit" class="button-edit">edit</a>
               <a href="/project/{{this.id}}/detail" class="button-detail">detail</a>
               <form action="/project/{{this.id}}?_method=DELETE" method="post">
                 <input type="hidden" name="id" value="{{this.id}}"/>
+                <input type="hidden" name="image" value="{{this.image}}"/>
                 <button type="submit" class="button-delete" onclick="return confirm('Anda yakin ingin menghapus ini?')">delete</button>
               </form>
             </div>
