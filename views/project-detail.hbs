@@ -1,60 +1,36 @@
 {{#>layout}}
     <main>
       <div class="container">
+        {{#with data}}
         <div class="post-header">
-          <h1>New Project App</h1>
+          <h1>{{title}}</h1>
         </div>
         <div class="post-detail">
           <div class="post-image">
             <img
-              src="../assets/blog-img-detail.png"
-              alt="Post-blog-detail"
-              title="blog detail"
+              src="http://localhost:5000/{{image}}"
+              alt="{{title}}"
+              title="{{title}}"
             />
           </div>
           <div class="post-meta">
             <div class="post-meta-duration">
               <h4>Duration</h4>
-              <p>1 Desember 2024 - 31 Desember 2024</p>
-              <p>1 Month</p>
+              <p>{{timePost start_date}} - {{timePost end_date}}</p>
+              <p>{{getRelativeTime start_date end_date}}</p>
             </div>
             <div class="post-meta-technologies">
               <h4>Technologies</h4>
               <div class="post-categories">
-                <span>React Js</span>
-                <span>Javascript</span>
-                <span>Node JS</span>
-                <span>SocketIO</span>
+                {{{labelPost technologies}}}
               </div>
             </div>
           </div>
         </div>
         <div class="post-description">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-            voluptates praesentium ipsum quod sunt quibusdam libero aperiam
-            repudiandae totam illo consequuntur quisquam laboriosam in neque
-            fuga, tempora, animi aspernatur corrupti! Ea ipsum eaque repellendus
-            tenetur iste, totam placeat distinctio. Quo in totam aperiam eaque
-            accusantium labore eligendi odio esse reprehenderit quis dolore,
-            mollitia beatae dignissimos optio vero expedita veniam. Temporibus?
-            Quos accusamus ducimus consequuntur similique, hic sint quas
-            quisquam, tenetur soluta ab quasi, asperiores rem. Officiis dicta
-            hic dolorum est impedit ab modi? Itaque maxime quod quaerat
-            excepturi consequuntur reiciendis.
-          </p>
-          <p>
-            Soluta, nisi iure laboriosam provident modi neque! Aut expedita
-            fugiat eum ut, nesciunt ea in, quasi quo nulla corrupti impedit
-            omnis non sapiente unde doloremque minus? Doloremque, voluptatum.
-            Quibusdam, quidem? Pariatur quasi, aperiam saepe minima, quidem
-            consequatur explicabo error, dolor libero modi repudiandae quod nisi
-            doloremque nesciunt voluptates officiis laudantium neque eligendi in
-            aliquam numquam? Temporibus, cumque. Consequatur, quisquam nesciunt!
-          </p>
+          <p>{{description}}</p>
         </div>
+      {{/with}}
       </div>
     </main>
-    <section></section>
-    <script src="./js/script.js" type="text/javascript"></script>
 {{/layout}}

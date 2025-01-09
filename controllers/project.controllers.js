@@ -27,7 +27,28 @@ async function projectPage(req, res) {
 }
 
 async function projectDetailPage(req, res) {
-  res.render("project-detail");
+  const userSession = req.session.user ?? null;
+  const id = req.params.id ?? null;
+
+  if (id == null) {
+    req.flash("error", "Projek tidak ada.");
+    return res.redirect("/projects");
+  }
+  const query = `SELECT * FROM public."Projects" WHERE id = :id`;
+
+  try {
+    const data = await sequelize.query(query, {
+      replacements: {
+        id: id,
+      },
+      type: QueryTypes.SELECT,
+    });
+
+    return res.render("project-detail", {
+      userSession: userSession,
+      data: data[0],
+    });
+  } catch (error) {}
 }
 
 async function projectAddPage(req, res) {

@@ -110,9 +110,16 @@ async function authLogin(req, res) {
 }
 
 async function authLogout(req, res) {
-  req.session.user = null;
+  if (req.body.user_id == null || req.session.user == null) {
+    req.flash("error", "Tidak ada user_id");
+    return res.redirect("/login");
+  }
 
-  res.redirect("/login");
+  req.session.user = null;
+  const logout = true;
+
+  req.flash("logout", logout);
+  return res.redirect("/login");
 }
 
 async function loginPage(req, res) {

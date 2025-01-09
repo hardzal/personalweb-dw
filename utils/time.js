@@ -1,5 +1,22 @@
 function timePost(result) {
-  return `${result.getDate()}/${result.getMonth() + 1}/${result.getFullYear()}`;
+  const month = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
+  ];
+
+  return `${result.getDate()} ${
+    month[result.getMonth()]
+  } ${result.getFullYear()}`;
 }
 
 function getRelativeTime(startDate, endDate) {
@@ -12,19 +29,16 @@ function getRelativeTime(startDate, endDate) {
 
   let diffInDays = Math.floor(diffInSeconds / (24 * 60 * 60));
   if (diffInDays < 30) {
-    console.log(diffInDays, "day");
-    return `Durasi : ${diffInDays} day` + (diffInDays > 1 ? `s` : ``);
+    return `${diffInDays} day` + (diffInDays > 1 ? `s` : ``);
   }
 
   let diffInMonths = Math.floor(diffInDays / 30);
   if (diffInMonths < 12) {
-    console.log(diffInMonths, "month");
-    return `Durasi : ${diffInMonths} month` + (diffInMonths > 1 ? "s" : "");
+    return `${diffInMonths} month` + (diffInMonths > 1 ? "s" : "");
   }
 
   let diffInYears = Math.floor(diffInMonths / 12);
-  console.log(diffInYears, "year");
-  return `Durasi : ${diffInYears} year` + (diffInYears > 1 ? "s" : "");
+  return `${diffInYears} year` + (diffInYears > 1 ? "s" : "");
 }
 
 function changeDate(date) {
@@ -34,4 +48,5 @@ function changeDate(date) {
 module.exports = {
   getRelativeTime,
   changeDate,
+  timePost,
 };

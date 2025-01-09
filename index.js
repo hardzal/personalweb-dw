@@ -8,8 +8,8 @@ const dotenv = require("dotenv");
 const upload = require("./middleware/upload-file.js");
 
 // const db = require("./config/connect");
-const { getRelativeTime, changeDate } = require("./utils/time.js");
-const { checkBox, flashMessage, summaryDesc } = require("./utils/helper.js");
+const { getRelativeTime, changeDate, timePost } = require("./utils/time.js");
+const { checkBox, summaryDesc, labelPost } = require("./utils/helper.js");
 
 const {
   homeIndex,
@@ -97,9 +97,11 @@ hbs.registerPartials(path.join(__dirname, "./views/partials"), (err) => {
 });
 hbs.registerHelper("getRelativeTime", getRelativeTime);
 hbs.registerHelper("changeDate", changeDate);
+hbs.registerHelper("timePost", timePost);
+
 hbs.registerHelper("checkBox", checkBox);
-hbs.registerHelper("flashMessage", flashMessage);
 hbs.registerHelper("summaryDesc", summaryDesc);
+hbs.registerHelper("labelPost", labelPost);
 
 // route lists
 app.get("/", homeIndex);
@@ -110,10 +112,10 @@ app.get("/about", aboutPage);
 app.get("/projects", projectPage);
 app.get("/project/add", projectAddPage);
 app.post("/project/add", upload.single("image"), projectAdd);
+app.get("/project/:id/detail", projectDetailPage);
 app.get("/project/:id/edit", projectUpdatePage);
 app.put("/project/:id", upload.single("image"), projectUpdate);
 app.delete("/project/:id", projectDelete);
-app.get("/projects/:id/detail", projectDetailPage);
 
 // blog controllers
 app.get("/blogs", blogPage);
@@ -136,7 +138,7 @@ app.delete("/testimonials/:id", testimonialDelete);
 // auth controllers
 app.get("/login", loginPage);
 app.get("/register", registerPage);
-app.get("/logout", authLogout);
+app.post("/logout", authLogout);
 app.post("/register", authRegister);
 app.post("/login", authLogin);
 

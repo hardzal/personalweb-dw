@@ -27,4 +27,13 @@
         </div>
     </main>
 </div>
+{{#if messages.logout}}
+<script>
+    Swal.fire({
+        title: "Success",
+        text: "Berhasil logout dari sistem",
+        icon: "success"
+    });
+</script>
+{{/if}}
 {{/layout}}

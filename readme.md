@@ -19,14 +19,14 @@
 - [x] Menggunakan HBS templating
 - [x] Sequelize ORM
 - [x] CRUD proses sederhana
-- [ ] Image Uploading
+- [x] Image Uploading
 - [ ] Validation
 - [x] Authentication
 - [ ] Authorization
 
 ---
 
-- [ ] CRUD Project
+- [x] CRUD Project
 - [ ] CRUD Blog
 - [ ] CRUD Testimonial
 - [ ] Contact email

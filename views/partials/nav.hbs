@@ -18,7 +18,10 @@
     {{#if userLoggedIn}}
       <li style="flex-grow: 4"></li>
       <li style="flex-grow: 1">
-        <a href="/logout">Logout</a>
+        <form name="logoutform" method="post" action="/logout" id="logoutform">
+            <input type="hidden" name="user_id" value="{{userLoggedIn.id}}">
+            <button class="btn btn-danger" type="button" name="logout" id="logout"/>Logout</button>
+        </form>
       </li>
     {{else}}
       <li style="flex-grow: 3"></li>
