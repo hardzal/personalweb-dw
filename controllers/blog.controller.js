@@ -5,6 +5,8 @@ const sequelize = new Sequelize(config.development);
 /** Blog controllers */
 async function blogPage(req, res) {
   const query = `SELECT * FROM public."Blogs"`;
+  const link = req.originalUrl;
+
   try {
     const blogsData = await sequelize.query(query, {
       type: QueryTypes.SELECT,
@@ -13,8 +15,12 @@ async function blogPage(req, res) {
     res.render("blogs", {
       title: "Blog Page",
       data: blogsData,
+      path: link,
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    res.status(501).render("errorpage");
+  }
 }
 
 function blogDetailPage(req, res) {

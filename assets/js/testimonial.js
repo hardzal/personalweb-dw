@@ -41,7 +41,7 @@ async function getTestimonial() {
 
   if (testimonialList) {
     const testimonialsHTML = testimonialHTML(testimonialList);
-    console.log(testimonialsHTML);
+
     return testimonialsHTML;
   } else {
     console.log("Tidak ada data");

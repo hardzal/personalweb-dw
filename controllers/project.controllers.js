@@ -9,6 +9,7 @@ async function projectPage(req, res) {
   const query = `SELECT * FROM public."Projects"`;
   // mengecek apakah ada user session
   const userSession = req.session.user ?? null;
+  const link = req.originalUrl;
 
   try {
     const projectsData = await sequelize.query(query, {
@@ -19,6 +20,7 @@ async function projectPage(req, res) {
       title: "Project list",
       data: projectsData,
       userSession: userSession,
+      path: link,
     });
   } catch (error) {
     console.error(error);

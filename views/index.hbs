@@ -64,4 +64,13 @@
     </div>
   </main>
 </div>
+{{#if messages.success}}
+    <script>
+    Swal.fire({
+        title: "Success",
+        text: "Berhasil login.",
+        icon: "success"
+    }); 
+    </script>
+{{/if}}
 {{/layout}}

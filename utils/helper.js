@@ -12,8 +12,13 @@ function labelPost(labels) {
   return newLabels.map((label) => `<span>${label}</span>`).join("");
 }
 
+function linkActive(link, path) {
+  return link == path ? "link-active" : "";
+}
+
 module.exports = {
   checkBox,
   summaryDesc,
   labelPost,
+  linkActive,
 };

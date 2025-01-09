@@ -159,6 +159,8 @@ li.btn-contact:hover {
   margin-top: 5px;
 }
 
+/* contact section */
+
 .contact-section {
   height: 90vh;
   display: flex;
@@ -176,6 +178,10 @@ li.btn-contact:hover {
   border-radius: 10px;
   padding: 30px;
   margin: 0 auto;
+}
+
+.form-field textarea {
+  height: 200px;
 }
 
 .form-field {
@@ -367,6 +373,7 @@ section {
   display: inline-block;
   padding: 10px;
   color: white;
+  border-radius: 10px;
 }
 
 .post-header {
@@ -443,6 +450,27 @@ section {
   background-color: darkblue !important;
 }
 
+.post-add-button {
+  background-color: #197292;
+  margin-left: 10px;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 20px;
+  border: 1px solid #cecece;
+}
+.post-add-button:hover {
+  background-color: #16453e;
+}
+.post-add-button a {
+  color: #ede7e1;
+}
+.container section {
+  margin-top: 20px;
+}
+
+span.userlogin {
+  font-size: 150%;
+}
 /** end post styles **/
 
 /** auth styling **/

@@ -1,22 +1,23 @@
 <div class="icon" style="flex-grow: 1">
   <img src="/assets/images/Circle-icons-dev.svg.png" />
 </div>
-<nav style="flex-grow: 9">
+<nav style="flex-grow: 15">
   <ul>
     <li style="flex-grow: 1">
-      <a href="/" class="link-active">Home</a>
+      <a href="/" class="{{linkActive path "/"}}">Home</a>
     </li>
     <li style="flex-grow: 1">
-      <a href="/projects">My Project</a>
+      <a href="/projects" class="{{linkActive path "/projects"}}">My Project</a>
     </li>
     <li style="flex-grow: 1">
-      <a href="/blogs">Blog</a>
+      <a href="/blogs" class="{{linkActive path "/blogs"}}">Blog</a>
     </li>
     <li style="flex-grow: 1">
-      <a href="/testimonials">Testimonial</a>
+      <a href="/testimonials" class="{{linkActive path "/testimonials"}}">Testimonial</a>
     </li>
     {{#if userLoggedIn}}
-      <li style="flex-grow: 4"></li>
+      <li style="flex-grow: 8"></li>
+      <li style="flex-grow: 1"><span class="userlogin">Hi, {{userLoggedIn.username}}</span></li>
       <li style="flex-grow: 1">
         <form name="logoutform" method="post" action="/logout" id="logoutform">
             <input type="hidden" name="user_id" value="{{userLoggedIn.id}}">
@@ -24,7 +25,7 @@
         </form>
       </li>
     {{else}}
-      <li style="flex-grow: 3"></li>
+      <li style="flex-grow: 8"></li>
       <li style="flex-grow: 1">
         <a href="/login">Login</a>
       </li>

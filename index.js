@@ -9,7 +9,12 @@ const upload = require("./middleware/upload-file.js");
 
 // const db = require("./config/connect");
 const { getRelativeTime, changeDate, timePost } = require("./utils/time.js");
-const { checkBox, summaryDesc, labelPost } = require("./utils/helper.js");
+const {
+  checkBox,
+  summaryDesc,
+  labelPost,
+  linkActive,
+} = require("./utils/helper.js");
 
 const {
   homeIndex,
@@ -107,6 +112,7 @@ hbs.registerHelper("timePost", timePost);
 hbs.registerHelper("checkBox", checkBox);
 hbs.registerHelper("summaryDesc", summaryDesc);
 hbs.registerHelper("labelPost", labelPost);
+hbs.registerHelper("linkActive", linkActive);
 
 // route lists
 app.get("/", homeIndex);

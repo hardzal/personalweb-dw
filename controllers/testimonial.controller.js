@@ -4,10 +4,13 @@ const sequelize = new Sequelize(config.development);
 
 async function testimonialPage(req, res) {
   const userSession = req.session.user ?? null;
+  const link = req.originalUrl;
+
   console.log(userSession);
   console.log("bisa kok");
   return res.render("testimonial", {
     userSession: userSession,
+    path: link,
   });
 }
 

@@ -24,9 +24,12 @@ function submitForm(e) {
   var link = document.createElement("a");
 
   if (checkNumber(data.phoneNumber)) {
-    link.href = `mailto:hadrizal7@gmail.com?subject=${data.subject}&body=Selamat siang.`;
-    link.href += `Nama saya ${data.name}.%0D%0ASilahkan hubungi saya`;
-    link.href += `di ${data.email} atau ${data.phoneNumber}\n\nBerikut pesan saya : ${data.message}`;
+    link.href = `mailto:hadrizal7@gmail.com?subject=${data.subject}&body=Selamat siang, Nama saya ${data.name}.`;
+    link.href += `%0D%0ASilahkan hubungi saya`;
+    const pesan = `\n\n${data.message}`;
+    link.href += `di ${data.email} atau ${
+      data.phoneNumber
+    } ${encodeURIComponent(pesan)}`;
 
     link.click();
   } else {

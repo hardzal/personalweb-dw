@@ -4,9 +4,9 @@ const sequelize = new Sequelize(config.development);
 
 async function homeIndex(req, res) {
   const userSession = req.session.user ?? null;
-  console.log(userSession);
+  const link = req.originalUrl;
 
-  return res.render("index", { userSession: userSession });
+  return res.render("index", { userSession: userSession, path: link });
 }
 
 async function contactPage(req, res) {
