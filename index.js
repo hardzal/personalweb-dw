@@ -15,6 +15,9 @@ const {
   homeIndex,
   contactPage,
   aboutPage,
+  unauthorizedPage,
+  errorPage,
+  notFoundPage,
 } = require("./controllers/page.controller.js");
 
 const {
@@ -119,7 +122,7 @@ app.delete("/project/:id", projectDelete);
 
 // blog controllers
 app.get("/blogs", blogPage);
-app.get("/blogs/:id", blogDetailPage);
+app.get("/blog/:id", blogDetailPage);
 app.get("/blog/add", blogAddPage);
 app.get("/blog/:id/edit", blogUpdatePage);
 app.post("/blog/add", blogAdd);
@@ -128,10 +131,10 @@ app.delete("/blog/:id", blogDelete);
 
 // testimonial controllers
 app.get("/testimonials", testimonialPage);
-app.get("/testimonials/:id", testimonialDetail);
-app.get("/testimonials/add", testimonialAddPage);
-app.get("/testimonials/:id/edit", testimonialUpdatePage);
-app.put("/testimonials/:id", testimonialUpdate);
+app.get("/testimonial/:id", testimonialDetail);
+app.get("/testimonial/add", testimonialAddPage);
+app.get("/testimonial/:id/edit", testimonialUpdatePage);
+app.put("/testimonial/:id", testimonialUpdate);
 app.post("/testimonials/add", testimonialAdd);
 app.delete("/testimonials/:id", testimonialDelete);
 
@@ -143,8 +146,9 @@ app.post("/register", authRegister);
 app.post("/login", authLogin);
 
 // custom page
-app.get("/errors", () => {});
-app.get("*", () => {});
+app.get("/unauthorized", unauthorizedPage);
+app.get("/errors", errorPage);
+app.get("*", notFoundPage);
 
 // app.get("/api/blog", async (req, res) => {// });
 

@@ -5,14 +5,16 @@ const sequelize = new Sequelize(config.development);
 /** Blog controllers */
 async function blogPage(req, res) {
   const query = `SELECT * FROM public."Blogs"`;
-  const blogsData = await sequelize.query(query, {
-    type: QueryTypes.SELECT,
-  });
+  try {
+    const blogsData = await sequelize.query(query, {
+      type: QueryTypes.SELECT,
+    });
 
-  res.render("blog", {
-    title: "Blog Page",
-    data: blogsData,
-  });
+    res.render("blogs", {
+      title: "Blog Page",
+      data: blogsData,
+    });
+  } catch (error) {}
 }
 
 function blogDetailPage(req, res) {
@@ -21,12 +23,14 @@ function blogDetailPage(req, res) {
 }
 
 async function blogAddPage(req, res) {
-  res.send("");
+  res.send("blog-add");
 }
 
 async function blogAdd(req, res) {}
 
-async function blogUpdatePage(req, res) {}
+async function blogUpdatePage(req, res) {
+  res.send("blog-edit");
+}
 
 async function blogUpdate(req, res) {}
 

@@ -135,7 +135,7 @@ li.btn-contact:hover {
   justify-content: space-between;
 }
 
-.card {
+.card-post {
   max-width: 30%;
   border: 1px solid #aaa;
   box-shadow: 10px 10px 5px 5px #eee;
@@ -456,4 +456,19 @@ section {
 }
 
 .image-upload {
+}
+
+/** testimonial **/
+.card-testimonial {
+  width: 300px;
+}
+
+/** footer **/
+footer {
+  font-size: 150%;
+  text-align: center;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  margin-top: 20px;
 }
