@@ -4,27 +4,27 @@ const sequelize = new Sequelize(config.development);
 
 async function testimonialPage(req, res) {
   const userSession = req.session.user ?? null;
-  const link = req.originalUrl;
+  const link = req.originalUrl.split("/");
 
-  console.log(userSession);
-  console.log("bisa kok");
   return res.render("testimonial", {
     userSession: userSession,
-    path: link,
+    path: link[1],
   });
 }
 
-async function testimonialAddPage(req, res) {}
+async function testimonialAddPage(req, res) {
+  return res.render("testimonial-add");
+}
 
 async function testimonialAdd(req, res) {}
 
-async function testimonialUpdatePage(req, res) {}
+async function testimonialUpdatePage(req, res) {
+  return res.render("testimonial-edit");
+}
 
 async function testimonialUpdate(req, res) {}
 
 async function testimonialDelete(req, res) {}
-
-async function testimonialDetail(req, res) {}
 
 module.exports = {
   testimonialPage,
@@ -33,5 +33,4 @@ module.exports = {
   testimonialUpdatePage,
   testimonialUpdate,
   testimonialDelete,
-  testimonialDetail,
 };

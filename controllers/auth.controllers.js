@@ -56,9 +56,8 @@ async function authRegister(req, res) {
       type: QueryTypes.INSERT,
     });
 
-    if (user) {
+    if (user.length) {
       req.flash("success", "Berhasil mendaftar. Silahkan login");
-
       res.redirect("/login");
     } else {
       throw error;
@@ -70,6 +69,11 @@ async function authRegister(req, res) {
 }
 
 async function authLogin(req, res) {
+  if (req.session.user != null) {
+    req.flash("error", "Oops, anda sudah login!");
+    return res.redirect("/");
+  }
+
   const { email, password } = req.body;
   console.log(email);
   try {
@@ -121,9 +125,10 @@ async function loginPage(req, res) {
   const user = req.session.user || null;
 
   if (user) {
-    res.redirect("/");
+    req.flash("error", "Oops, anda sudah login!");
+    return res.redirect("/");
   } else {
-    res.render("auth/login");
+    return res.render("auth/login");
   }
 }
 
@@ -131,9 +136,10 @@ async function registerPage(req, res) {
   const user = req.session.user || null;
 
   if (user) {
-    res.redirect("/");
+    req.flash("error", "Oops, anda sudah login!");
+    return res.redirect("/");
   } else {
-    res.render("auth/register");
+    return res.render("auth/register");
   }
 }
 

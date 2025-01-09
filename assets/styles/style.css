@@ -24,8 +24,6 @@ main {
   max-width: 100%;
   padding: 20px;
   border: 1px solid #333;
-  display: flex;
-  justify-content: space-between;
   font-size: large;
 }
 
@@ -40,10 +38,7 @@ main > div {
 .introduction {
   text-align: justify;
   max-width: 70%;
-}
-
-.summary {
-  line-height: 1.5;
+  margin-right: 50px;
 }
 
 .button {
@@ -53,12 +48,13 @@ main > div {
 
 .button > div {
   font-size: large;
-  width: 150px;
+  width: 200px;
   margin: 10px;
   padding: 10px;
 }
 
 .btn-contact {
+  cursor: pointer;
   background-color: black;
   border-radius: 20px;
   border: 1px solid #000;
@@ -70,6 +66,7 @@ main > div {
 }
 
 .btn-contact:hover {
+  background-color: #2c3e50;
   transition: all 0.2s ease-in-out 0.2s;
 }
 
@@ -115,6 +112,15 @@ li.btn-contact:hover {
   color: orangered;
 }
 
+.summary {
+  line-height: 1.5;
+}
+
+.content {
+  display: flex;
+  justify-content: start;
+}
+
 .icon {
   display: inline;
   text-align: center;
@@ -129,21 +135,30 @@ li.btn-contact:hover {
 }
 
 .socmed {
-  display: flex;
-  margin: 70px 20px;
+  margin: 50px 20px;
   width: 40%;
+}
+
+.socmed-header {
+  margin-bottom: 30px;
+  font-size: 150%;
+}
+
+.socmed-icon {
+  display: flex;
   justify-content: space-between;
 }
 
 .card-post {
-  max-width: 30%;
+  margin-left: 50px;
+  width: 20%;
   border: 1px solid #aaa;
   box-shadow: 10px 10px 5px 5px #eee;
+  height: 100%;
 }
 
 .card-photo img {
-  max-width: 100%;
-  height: 30%;
+  width: 100%;
 }
 
 .card-caption {
@@ -275,6 +290,7 @@ section {
 
 .post-add {
   width: 60%;
+  height: 100%;
   margin: 0 auto;
 }
 
@@ -306,7 +322,7 @@ section {
 }
 
 .post-thumbnail {
-  height: 250px;
+  height: 100%;
   overflow: hidden;
   object-fit: cover;
 }
@@ -320,6 +336,7 @@ section {
 }
 
 .post-time {
+  margin-bottom: 20px;
 }
 
 .post-time span {

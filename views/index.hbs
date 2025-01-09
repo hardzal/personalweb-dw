@@ -8,20 +8,10 @@
   <main>
     <div class="content">
       <div class="introduction">
-        <div class="summary">
-          <h2>Hi, Welcome to my new page!</h2>
+        <div class="summary"><
+          <h2>Hi, Welcome to my personal page</h2><hr/>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque,
-            quod doloremque tenetur esse tempora dicta facilis dolorum,
-            fugit est culpa reprehenderit eos maxime eveniet ex tempore
-            porro repudiandae nesciunt natus! Voluptatibus corporis
-            inventore eveniet possimus est placeat ratione quis enim modi ut
-            voluptatem harum ullam perspiciatis earum, delectus ducimus rem
-            molestiae. Quia, repudiandae laboriosam recusandae similique
-            unde ex! Omnis, ducimus. Iusto tempore culpa enim repudiandae
-            molestias. Nihil similique quae odio ratione asperiores velit,
-            maiores incidunt nam adipisci soluta fugit odit suscipit dolorem
-            provident natus, rem vitae harum ipsum culpa sunt.
+            Hi, I’m a passionate Fullstack Web Developer with experience in Node.js (Express) and currently exploring React.js to enhance my skills in building dynamic and user-friendly web applications. My journey in software development is driven by my long-term goal to become a Tech Architect who creates scalable and efficient systems. With a mindset of continuous learning, I’m always up for challenges that push me to grow both technically and professionally. I aim to combine my knowledge in fullstack development with scalable architecture design to build impactful applications.
           </p>
         </div>
         <div class="button">
@@ -31,28 +21,31 @@
             </a>
           </div>
           <div class="btn-cv">
-            <a href="#" title="Download CV">
+            <a href="https://drive.google.com/file/d/19rF-eoDL1PNCnB3MUite5fSMrTFe06B6/view?usp=sharing" title="Download CV" target="_blank">
+            <i class="fa-solid fa-download"></i>
               download CV&nbsp;&nbsp;
-              <i class="fa-solid fa-download"></i>
             </a>
           </div>
         </div>
         <div class="socmed">
-          <a href="#">
-            <i class="fa-brands fa-linkedin-in fa-3x"></i>
-          </a>
-          <a href="#">
-            <i class="fa-brands fa-twitter fa-3x"></i>
-          </a>
-          <a href="#">
-            <i class="fa-brands fa-instagram fa-3x"></i>
-          </a>
-          <a href="#">
-            <i class="fa-brands fa-facebook fa-3x"></i>
-          </a>
+          <div class="socmed-header">social media</div>
+          <div class="socmed-icon">
+            <a href="#">
+              <i class="fa-brands fa-linkedin-in fa-3x"></i>
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-twitter fa-3x"></i>
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-instagram fa-3x"></i>
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-facebook fa-3x"></i>
+            </a>
+          </div>
         </div>
       </div>
-      <div class="card">
+      <div class="card-post">
         <div class="card-photo">
           <img src="./assets/images/photo.jpg" alt="My Selfie" title="My Selfie" />
         </div>
@@ -62,6 +55,18 @@
         </div>
       </div>
     </div>
+    {{!-- <section>
+      <div class="header">
+        <h3>Project Lists</h3>
+      </div>
+      <div class="projects"></div>
+    </section>
+    <section>
+      <div class="header">
+        <h3>Blog Lists</h3>
+      </div>
+      <div class="blogs"></div>
+    </section> --}}
   </main>
 </div>
 {{#if messages.success}}
@@ -70,6 +75,16 @@
         title: "Success",
         text: "Berhasil login.",
         icon: "success"
+    }); 
+    </script>
+{{/if}}
+
+{{#if messages.error}}
+    <script>
+    Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `{{messages.error}}`,
     }); 
     </script>
 {{/if}}

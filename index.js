@@ -60,7 +60,6 @@ const {
   testimonialUpdate,
   testimonialUpdatePage,
   testimonialDelete,
-  testimonialDetail,
 } = require("./controllers/testimonial.controller.js");
 
 const { blogList, getTestimonials } = require("./controllers/api.js");
@@ -113,7 +112,9 @@ hbs.registerHelper("checkBox", checkBox);
 hbs.registerHelper("summaryDesc", summaryDesc);
 hbs.registerHelper("labelPost", labelPost);
 hbs.registerHelper("linkActive", linkActive);
-
+hbs.registerHelper("ifEquals", function (arg1, arg2, options) {
+  return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+});
 // route lists
 app.get("/", homeIndex);
 app.get("/contact", contactPage);
@@ -139,7 +140,6 @@ app.delete("/blog/:id", blogDelete);
 
 // testimonial controllers
 app.get("/testimonials", testimonialPage);
-app.get("/testimonial/:id", testimonialDetail);
 app.get("/testimonial/add", testimonialAddPage);
 app.get("/testimonial/:id/edit", testimonialUpdatePage);
 app.put("/testimonial/:id", testimonialUpdate);

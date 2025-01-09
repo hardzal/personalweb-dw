@@ -1,0 +1,58 @@
+{{#> layout}}
+  <div class="container">
+    <main>
+      <div class="post-add">
+        <form onsubmit="addBlog(event)" class="form-container">
+          <h1 class="section-title">Create Post Blog</h1>
+
+          <div class="form-field">
+            <label for="input-blog-title" class="form-label">Title</label>
+            <input
+              id="input-blog-title"
+              name="input-blog-title"
+              class="form-input"
+              type="text"
+              placeholder="enter title here..."
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="input-blog-content">Content</label>
+            <textarea
+              id="input-blog-content"
+              name="input-blog-content"
+              class="form-input"
+              rows="8"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-field">
+            <label for="input-blog-image" class="form-label"
+              >Upload Image</label
+            >
+            <div class="input-blog-image-group">
+              <label for="input-blog-image">
+                <p>Attach File</p>
+                <img src="/assets/images/file.png" />
+              </label>
+              <input
+                id="input-blog-image"
+                name="input-blog-image"
+                class="form-input"
+                type="file"
+                placeholder="title"
+                hidden
+              />
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button type="submit">Post Blog</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    </div>
+{{/layout}}

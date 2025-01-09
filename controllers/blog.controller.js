@@ -5,7 +5,7 @@ const sequelize = new Sequelize(config.development);
 /** Blog controllers */
 async function blogPage(req, res) {
   const query = `SELECT * FROM public."Blogs"`;
-  const link = req.originalUrl;
+  const link = req.originalUrl.split("/");
 
   try {
     const blogsData = await sequelize.query(query, {
@@ -15,7 +15,7 @@ async function blogPage(req, res) {
     res.render("blogs", {
       title: "Blog Page",
       data: blogsData,
-      path: link,
+      path: link[1],
     });
   } catch (error) {
     console.log(error);

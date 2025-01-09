@@ -1,8 +1,13 @@
 {{#> layout title="Testimonial" userLoggedIn=userSession}}
     <div class="container">
+        
         <section>
-            <h2 class="text-center my-5">My Testimonials</h2>
-
+            <h2 class="text-center">My Testimonials</h2>
+        {{#if userLoggedIn}}
+        <div class="post-add-button" style="display: flex;align-items: center;justify-content: center;">
+          <a href="/testimonial/add" style="display: inline-block;">Tambah Projek</a>
+        </div>
+        {{/if}}
             <h4 class="text-center mb-3">Rating By Star</h4>
 
             <div class="container-sm text-center d-flex flex-row justify-content-center gap-3">

@@ -1,4 +1,4 @@
-{{#>layout}}
+{{#>layout title="Login form"}}
 <div class="container">
     <main>
         <div class="form-auth">
@@ -35,5 +35,25 @@
         icon: "success"
     });
 </script>
+{{/if}}
+
+{{#if messages.error}}
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `{{messages.error}}`,
+        });
+    </script>
+{{/if}}
+
+{{#if messages.success}}
+    <script>
+    Swal.fire({
+        title: "Success",
+        text: "Berhasil mendaftar akun",
+        icon: "success"
+    }); 
+    </script>
 {{/if}}
 {{/layout}}
