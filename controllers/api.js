@@ -1,15 +1,24 @@
-const { Sequelize } = require("sequelize");
-const config = require("../config/config.json");
-const sequelize = new Sequelize(config.development);
+const db = require("../config/connect.js");
 
-async function blogList() {
+async function blogList(req, res) {
   try {
     const result = await db.query(`SELECT * FROM public."Users"`);
-    res.json(result.rows);
+    return res.json(result.rows);
   } catch (err) {
     console.error(err);
-    res.status(500).send("Internal Server Error");
+    return res.status(500).send("Internal Server Error");
   }
 }
 
-module.exports = { blogList };
+async function getTestimonials(req, res) {
+  try {
+    const result = await db.query(`SELECT * FROM public."Testimonials"`);
+
+    return res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Internal Server Error");
+  }
+}
+
+module.exports = { blogList, getTestimonials };

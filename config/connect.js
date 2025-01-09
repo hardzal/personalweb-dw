@@ -10,11 +10,11 @@ try {
     port: process.env.DATABASE_PORT,
     database: process.env.DATABASE_NAME,
   });
+
+  module.exports = {
+    query: (text, params) => pool.query(text, params),
+  };
 } catch (error) {
   // throw error;
   console.log("Error: ", error);
 }
-
-module.exports = {
-  query: (text, params) => pool.query(text, params),
-};

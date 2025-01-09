@@ -58,6 +58,8 @@ const {
   testimonialDetail,
 } = require("./controllers/testimonial.controller.js");
 
+const { blogList, getTestimonials } = require("./controllers/api.js");
+
 const app = express();
 const PORT = 5000;
 
@@ -145,12 +147,14 @@ app.post("/logout", authLogout);
 app.post("/register", authRegister);
 app.post("/login", authLogin);
 
+// api
+app.get("/api/blogs", blogList);
+app.get("/api/Testimonials", getTestimonials);
+
 // custom page
 app.get("/unauthorized", unauthorizedPage);
 app.get("/errors", errorPage);
 app.get("*", notFoundPage);
-
-// app.get("/api/blog", async (req, res) => {// });
 
 app.listen(PORT, () => {
   console.log(`\nBerhasil menjalankan server pada http://localhost:${PORT}`);

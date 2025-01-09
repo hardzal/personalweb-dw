@@ -1,42 +1,19 @@
-let testimonials = [
-  {
-    author: "Leo G",
-    rating: 5,
-    content: "Keren banget websitenya!",
-    image: "1.jpg",
-  },
-  {
-    author: "Nur M Arofiq",
-    rating: 4,
-    content: "Mantaapp! Terima kasih.",
-    image: "2.jpg",
-  },
-  {
-    author: "Rendy Zulfan",
-    rating: 3,
-    content:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea reiciendis qui molestias blanditiis inventore reprehenderit nesciunt sequi pariatur quaerat? Error?",
-    image: "3.jpg",
-  },
-  {
-    author: "Syifa Maulaya",
-    rating: 4,
-    content:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, commodi obcaecati necessitatibus totam reprehenderit fuga.",
-    image: "4.png",
-  },
-  {
-    author: "Pandu Rizky",
-    rating: 5,
-    content: "Keren bener gannn",
-    image: "5.jpg",
-  },
-];
+async function getData(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
 
-const testimonialsContainer = document.getElementById("testimonialsContainer");
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
 
-const testimonialsHTML = (daftarTestimoni) => {
-  return daftarTestimoni
+function testimonialHTML(data) {
+  return data
     .map(
       (testimonial) => `
       <div class="d-flex justify-content-center my-3">
@@ -44,10 +21,10 @@ const testimonialsHTML = (daftarTestimoni) => {
               <img src="assets/images/${testimonial.image}" class="card-img-top" alt="..." />
               <div class="card-body px-0">
                 <div class="overflow-scroll" style="height: 50px">
-                  <p class="card-text">${testimonial.content}</p>
+                  <p class="card-text">${testimonial.description}</p>
                 </div>
                 <div class="text-end fw-bold mt-3">
-                  <p>- ${testimonial.author}</p>
+                  <p>- ${testimonial.name}</p>
                   <p>${testimonial.rating}✯</p>
                 </div>
               </div>
@@ -55,16 +32,37 @@ const testimonialsHTML = (daftarTestimoni) => {
       </div>`
     )
     .join("");
-};
+}
 
-function showAllTestimonials() {
-  testimonialsContainer.innerHTML = testimonialsHTML(testimonials);
+async function getTestimonial() {
+  const testimonialList = await getData(
+    "http://localhost:5000/api/testimonials"
+  );
+
+  if (testimonialList) {
+    const testimonialsHTML = testimonialHTML(testimonialList);
+    console.log(testimonialsHTML);
+    return testimonialsHTML;
+  } else {
+    console.log("Tidak ada data");
+    return [];
+  }
+}
+
+const testimonialsContainer = document.getElementById("testimonialsContainer");
+
+async function showAllTestimonials() {
+  testimonialsContainer.innerHTML = await getTestimonial();
 }
 
 showAllTestimonials();
 
-function filterTestimonialByStar(rating) {
-  const filteredTestimonial = testimonials.filter(
+async function filterTestimonialByStar(rating) {
+  const testimonialList = await getData(
+    "http://localhost:5000/api/testimonials"
+  );
+
+  const filteredTestimonial = testimonialList.filter(
     (testimonial) => testimonial.rating === rating
   );
 
@@ -75,6 +73,6 @@ function filterTestimonialByStar(rating) {
   }
 
   setTimeout(() => {
-    testimonialsContainer.innerHTML = testimonialsHTML(filteredTestimonial);
-  }, 1000);
+    testimonialsContainer.innerHTML = testimonialHTML(filteredTestimonial);
+  }, 500);
 }
