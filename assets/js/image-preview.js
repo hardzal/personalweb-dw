@@ -8,7 +8,7 @@ document.getElementById("image").addEventListener("change", function (event) {
     reader.onload = function (e) {
       preview.src = e.target.result;
       preview.classList.remove("d-none");
-      postAdd.style.cssText += "padding-bottom: 100px";
+      postAdd.style.cssText += "padding-bottom: 150px";
     };
     reader.readAsDataURL(file);
   } else {
