@@ -37,7 +37,7 @@ async function authRegister(req, res) {
   if (user.length != 0) {
     req.flash("error", "Email atau username telah terdaftar!");
     req.flash("email", email);
-    req.flash("username", password);
+    req.flash("username", username);
 
     return res.redirect("/register");
   }
@@ -45,13 +45,14 @@ async function authRegister(req, res) {
   try {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    const query = `INSERT INTO public."Users"(username, password, email) VALUES(:username, :password, :email)`;
+    const query = `INSERT INTO public."Users"(username, password, email, "createdAt") VALUES(:username, :password, :email, :createdAt)`;
 
     const user = await sequelize.query(query, {
       replacements: {
         username: username,
         email: email,
         password: hashedPassword,
+        createdAt: new Date(),
       },
       type: QueryTypes.INSERT,
     });

@@ -1,6 +1,6 @@
 {{#> layout title="Project edit" userLoggedIn=userSession}}
   <div class="container">
-      <main>
+      <main style="padding-bottom:150px;">
         {{#with data}}
         <div class="post-add">
           <form
@@ -121,7 +121,7 @@
                   />
                 </div>
                 <div>
-                    <img id="preview" src="#" alt="image preview" class="img-thumbnail d-none" style="max-height: 300px;">
+                    <img id="preview" src="/{{image}}" alt="image preview" class="img-thumbnail" style="max-height: 300px;">
                 </div>
               </div>
               <input type="hidden" value="{{id}}" name="id"/>
