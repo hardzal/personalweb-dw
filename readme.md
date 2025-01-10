@@ -22,14 +22,14 @@
 - [x] Image Uploading
 - [ ] Validation
 - [x] Authentication
-- [ ] Authorization
+- [x] Authorization
 
 ---
 
 - [x] CRUD Project
 - [ ] CRUD Blog
 - [ ] CRUD Testimonial
-- [ ] Contact email
-- [ ] Filtering Testimonial
+- [x] Contact email
+- [x] Filtering Testimonial
 - [ ] Searching
 - [ ] Responsive

@@ -1,6 +1,6 @@
 const { Sequelize, QueryTypes } = require("sequelize");
 const config = require("../config/config.json");
-const sequelize = new Sequelize(config.development);
+const sequelize = new Sequelize(config.production);
 
 /** Blog controllers */
 async function blogPage(req, res) {

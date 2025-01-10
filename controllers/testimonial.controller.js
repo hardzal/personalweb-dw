@@ -1,6 +1,6 @@
 const { Sequelize, QueryTypes } = require("sequelize");
 const config = require("../config/config.json");
-const sequelize = new Sequelize(config.development);
+const sequelize = new Sequelize(config.production);
 
 async function testimonialPage(req, res) {
   const userSession = req.session.user ?? null;

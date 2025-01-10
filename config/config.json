@@ -16,11 +16,16 @@
     "dialect": "postgresql"
   },
   "production": {
-    "username": "postgres",
-    "password": null,
-    "database": "dw_personalweb",
-    "host": "127.0.0.1",
+    "username": "personalweb-dw_owner",
+    "password": "OUPQgE5KMzn6",
+    "database": "personalweb-dw",
+    "host": "ep-aged-morning-a5p6dihe.us-east-2.aws.neon.tech",
     "port": 5432,
-    "dialect": "postgresql"
+    "dialect": "postgresql",
+    "dialectOptions": {
+      "ssl": {
+        "require": true
+      }
+    }
   }
 }

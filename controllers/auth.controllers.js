@@ -1,7 +1,7 @@
 const { Sequelize, QueryTypes } = require("sequelize");
 const config = require("../config/config.json");
 const bcrypt = require("bcrypt");
-const sequelize = new Sequelize(config.development);
+const sequelize = new Sequelize(config.production);
 
 // the high salt the high computation
 const saltRounds = 10;
