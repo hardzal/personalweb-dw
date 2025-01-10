@@ -2,6 +2,7 @@ const { Sequelize, QueryTypes } = require("sequelize");
 const config = require("../config/config.json");
 const sequelize = new Sequelize(config.production);
 const fs = require("fs");
+const cloudinary = require("../config/cloudinary.config.js");
 
 /** projectpage controllers */
 
@@ -89,14 +90,41 @@ async function projectAdd(req, res) {
     return alert("All input fields cannot be empty");
   }
 
+  const uploadToCloudinary = (fileBuffer) => {
+    return new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream({ resource_type: "auto" }, (error, result) => {
+          if (error) {
+            reject(error); // Menolak Promise jika terjadi error
+          } else {
+            resolve(result); // Menyelesaikan Promise dengan hasil upload
+          }
+        })
+        .end(fileBuffer);
+    });
+  };
+
   try {
+    // cloudinary.uploader
+    //   .upload_stream({ resource_type: "auto" }, (error, result) => {
+    //     if (error) {
+    //       console.log(error);
+    //       return res
+    //         .status(500)
+    //         .json({ error: "Error uploading to Cloudinary" });
+    //     }
+    //     console.log(result);
+    //   })
+    //   .end(req.file.buffer);
+    const uploadResult = await uploadToCloudinary(req.file.buffer);
+
     const query = `INSERT INTO public."Projects" (title, description, technologies, start_date, end_date, image, user_id, "createdAt")
                 VALUES
-      ('${title}', '${description}', 
-      '${technologies}', '${new Date(startDate).toISOString()}', 
-      '${new Date(endDate).toISOString()}', '${image}', 
-      '${user_id}',
-      '${new Date().toISOString()}')`;
+        ('${title}', '${description}', 
+        '${technologies}', '${new Date(startDate).toISOString()}', 
+        '${new Date(endDate).toISOString()}', '${uploadResult.secure_url}', 
+        '${user_id}',
+        '${new Date().toISOString()}')`;
 
     const project = await sequelize.query(query, {
       type: QueryTypes.INSERT,
@@ -198,11 +226,11 @@ async function projectUpdate(req, res) {
 }
 
 async function projectDelete(req, res) {
-  const image = req.body.image ?? null;
-  if (image != null) {
-    fs.unlinkSync(image);
-  }
-
+  // const image = req.body.image ?? null;
+  // if (image != null) {
+  //   fs.unlinkSync(image);
+  // }
+  console.log(req.body);
   const query = `DELETE FROM public."Projects" WHERE id = :id`;
   try {
     const project = await sequelize.query(query, {
